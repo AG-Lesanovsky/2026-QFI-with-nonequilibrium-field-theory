@@ -7,11 +7,6 @@ F = 4·Var[X],  X(t) = ∫₀ᵗ (S_x/S) dt′ per trajectory; all outputs are F
 ## Contents
 btc/sde.py        stochastic integrators. USE scheme="diffusive": Stratonovich drift
                   (collective_diffusive_drift_cartesian) + global x/y rotation noise.
-                  FIX 2026-08-28: the drift half-steps now rotate about the true axis
-                  ω_n = B − A_n (collective_diffusive_axis / _axis_half_rotation). The
-                  previous _half_rotation rotated about the tangential projection of ω,
-                  which gave an O(Ω·dt_factor) spurious drift growing with N (−4.6% QFI at
-                  N=256, dt_factor=1e-3). Legacy schemes ("drift", "diffusive_em") unchanged.
 btc/qfi.py        trajectory QFI (power sums, checkpointing) + exact Lindblad / monitored
                   (Gammelmark–Mølmer) QFI reference (needs scipy, qutip).
 btc/operators.py  collective operators, coherent initial states (needs qutip).

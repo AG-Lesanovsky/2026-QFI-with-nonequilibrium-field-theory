@@ -104,25 +104,3 @@ modest `--n-traj-mcwf 1000 --T 6`.  It carries an `O(dt)` unravelling bias
 (default `dt = 0.005/max(2Ω,Γ0)` keeps it ≲2%; verify by halving `--dt-factor-mcwf`)
 and the monitored-QFI integrand has heavy tails at late times, so its stderr
 grows with T — increase `n_traj` if the band is wide.
-
-## Validation (what to expect)
-
-At 2×2 and 3×3 the exact monitored QFI is available with no MC/`dt` bias:
-
-| L | N | F_sc vs exact F_mon at Γ0t≈3 |
-|---|---|------------------------------|
-| 2 | 4 | ~15–18 % (TWA truncation) |
-| 3 | 9 | ~15 % |
-
-The semiclassical QFI tracks the monitored QFI closely at early times and
-overshoots by an `O(1/√N)` truncation error that shrinks with N and is smallest
-at moderate-to-strong driving (`Ω/Γ0 ≳ 1`) — exactly the regime the method
-targets.  The mean magnetisations ⟨S_a⟩(t) match the exact `mesolve` result to
-the same order, confirming the drift/noise.
-
-## Analysis
-
-Load the two standalone formats side by side (e.g. in a notebook): compare
-`sc_array_L<L>.npz` `qfi` against `mcwf_L<L>.npz` `qfi` **directly** (same
-generator, both unnormalised), or both `/N` for a per-atom view.  Kept out of the
-runners on purpose — they only produce raw data.
